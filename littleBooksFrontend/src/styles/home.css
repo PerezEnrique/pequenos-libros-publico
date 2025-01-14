@@ -167,6 +167,24 @@ color:var(--luz_1);
   color: var(--luz_1);
 }
 
+.logoCarrito {
+  height: 100px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: fixed;  
+  bottom: 3rem;     
+  right: 5rem;      
+  z-index: 999;     
+  box-shadow: 0px 8px 16px var(--fondo_1); 
+  border-radius: 50%; 
+}
+
+.logoCarrito:hover {
+  transform: scale(1.05);  
+  box-shadow: 5px 13px 21px var(--fondo_1);  
+}
+
+
 /*estilo para componente dinamico*/
 
 .dinamic-content {
@@ -251,6 +269,8 @@ color:var(--luz_1);
   background-color: var(--luz_1);
   color: var(--fondo_2);
 }
+
+
 
 
 
