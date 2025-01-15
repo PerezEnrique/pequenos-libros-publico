@@ -171,17 +171,17 @@ color:var(--luz_1);
   height: 100px;
   object-fit: cover;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: fixed;  
+  position: fixed;
   bottom: 3rem;     
   right: 5rem;      
   z-index: 999;     
-  box-shadow: 0px 8px 16px var(--fondo_1); 
+  box-shadow: 0px 8px 16px var(--luz_2); 
   border-radius: 50%; 
 }
 
 .logoCarrito:hover {
   transform: scale(1.05);  
-  box-shadow: 5px 13px 21px var(--fondo_1);  
+  box-shadow: 5px 13px 21px var(--luz_2);  
 }
 
 
