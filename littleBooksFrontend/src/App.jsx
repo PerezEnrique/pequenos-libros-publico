@@ -1,14 +1,14 @@
 import React from 'react';
-import { SearchProvider } from './hook/SearchContext'; 
-import Navbar from './components/navbar'; 
-import DinamiContent from './components/dinamicContent'; 
+import { BrowserRouter as Router } from 'react-router-dom';
+import  AppRoutes from './routes/routes';
+import Header from './components/header';
 
 const App = () => {
   return (
-    <SearchProvider> 
-      <Navbar /> 
-      <DinamiContent /> 
-    </SearchProvider>
+    <Router >
+      <Header />
+      <AppRoutes />      
+    </Router>
   );
 };
 

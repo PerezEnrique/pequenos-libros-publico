@@ -1,29 +1,24 @@
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import libros_cama from '../assets/libros_en_cama.jpeg';
 import libreria from '../assets/bibloteca_tenue.jpeg';
 import cart from '../assets/cart.png';
 import mapa from '../assets/mapa.jpg';
 import '../styles/home.css';
 
-//este componente es el estatico de la pagina, el unico cambio es la variocion de una imagen al mapa de ubicacion.
+//este componente es el estatico de la pagina,
+//el unico cambio es la variocion de una imagen al mapa de ubicacion.
 
 const StatiContent = () => {
 
     const [imagen,setImagen] = useState(libros_cama);
 
-    //const navigate = useNavigate();
 
     const verMapa = () => {
         setImagen (imagen === libros_cama ? mapa : libros_cama);
         
     };
     
-    const verCarrito = () => {
-       //avigate('/urlCarrito'); 
-    };
-
-
     return (
         <div className="content-container">
             <div className="content-block">
@@ -55,8 +50,10 @@ const StatiContent = () => {
                         </div>
                 </div>
                 <div>
-                    <button type='button' onClick={verCarrito}>
+                    <button type='button' >
+                        <Link to='/carrito'>
                             <img src={cart} alt="Carrito de compras" className='logoCarrito' />
+                        </Link>
                     </button>
                 </div>
             </div>
