@@ -26,12 +26,18 @@ const Carrito  = () => {
     return(
         <div className="container">
             <div className="list">
+                <img src={cart} alt="carrito de compras" className="img-carrito" />
                 <h2>
                     Tu pedido:
                 </h2>
+                {/*espacio para la lista dinamica*/}
+                <button type="button">
+                    <Link to="/">
+                        Seguir comprando
+                    </Link>
+                </button>
             </div>
             <div className="form-conteiner">
-                <img src={cart} alt="carrito de compras" className="img-carrito" />
                 <h2>
                     Informacion de entrega
                 </h2>
@@ -47,6 +53,8 @@ const Carrito  = () => {
 
                     <label htmlFor="direccion"> Direccion </label>
                     <input type="text" name="direccion" required value={formData.direccion} onChange={handleChange} />
+
+                    <button type="submit">Confirmar pedido</button>
                 </form>
             </div>
         </div>
