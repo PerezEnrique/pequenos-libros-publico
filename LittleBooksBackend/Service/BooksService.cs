@@ -23,16 +23,16 @@ public class BookService : IBookService
 
         using var connection = new NpgsqlConnection(_connectionString);
         
-        // var sql = "select * from search_books_by_genre(@genre);";
-
-        var sql = @"SELECT b.""id"", b.""title"", a.""name"", b.""year"", g.""name"", b.""description""
-	        FROM ""books"" b
-	        JOIN ""books_authors"" ba ON b.""id"" = ba.""book_id""
-	        JOIN ""authors"" a ON ba.""author_id"" = a.""id""
-			JOIN ""books_genres"" bg ON b.""id"" = bg.""book_id""
-			JOIN ""genres"" g ON bg.""genre_id"" = g.""id""
-			WHERE
-	            LOWER(g.""name"") LIKE '%' || LOWER(@genre) || '%';";
+        var sql = @"SELECT 
+                id, 
+                title,
+                year, 
+                description, 
+                authorid AS id, 
+                author AS name, 
+                genreid AS id, 
+                genre AS name 
+            FROM search_books_by_genre(@genre);";
 
         IEnumerable<Book> queryResult = await connection.QueryAsync<Book, Author, Genre, Book>(
             sql, 
