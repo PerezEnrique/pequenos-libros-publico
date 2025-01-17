@@ -482,3 +482,4 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+LittleBooksBackend/Properties/launchSettings.json
