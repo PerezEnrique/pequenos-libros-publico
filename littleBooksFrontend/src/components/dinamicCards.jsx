@@ -21,6 +21,7 @@ const DinamicCards= () => {
             description={result.description}
           />
           ))}
+          <button type="button"> Agregar al carrito </button>
         </div>
       )}
     </div>
