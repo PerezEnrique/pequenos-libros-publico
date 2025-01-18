@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSearch } from '../hook/SearchContext';
 import '../styles/home.css';
 import { paletas } from '../utils/paletas';
+import { FIND_BOOKS } from '../settings';
+
 
 const Navbar = () => {
 
@@ -19,10 +21,10 @@ const Navbar = () => {
 
   const handleSearch = async (e) => {
     try {
-      const response = await fetch(`https://api=${searchTerm}`);
+      const response = await fetch(`${FIND_BOOKS}${searchTerm}`);
       const data = await response.json();
       setResults(data); 
-    } catch (error) {
+    } catch (error) {                 
       console.error("Error fetching data:", error);
     }
   };

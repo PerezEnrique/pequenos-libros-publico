@@ -5,7 +5,10 @@ import cart from "../assets/cart.png";
 
 import "../styles/carrito.css";
 
-const Carrito  = () => {
+//este componente muestra la segunda vista del ecommerce contiene la lista
+// de compra y un formulario con los datos requeridos para el envio
+
+const Carrito  = () => {         
 
     const [formData, setFormData] = useState({
         nombre: '',
