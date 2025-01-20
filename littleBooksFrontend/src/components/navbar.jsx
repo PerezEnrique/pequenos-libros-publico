@@ -71,11 +71,11 @@ const Navbar = () => {
                 <li>
                   <input
                     type="text"
-                    placeholder="Buscar..."
+                    placeholder="Ingresa el titulo o el autor"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
-                  <button type='submit' onClick={handleSearch}></button>
+                  <button type='submit' onClick={handleSearch}> Buscar</button>
                 </li>
               </form>
           </ul>
