@@ -10,18 +10,18 @@ const DinamicCards= () => {
       {results.length === 0 ? (
         <p>No se encontraron resultados</p> 
       ) : (
-        <div>
+        <div className='dinamic-cart-content'>
           {results.map((result, index) => (
             <Card
             key={index}
             image={result.image} 
-            title={result.title} 
-            author={result.author} 
+            title={result.title}
+            year={result.year}
+            authors={result.authors} 
             stock={result.stock} 
             description={result.description}
           />
           ))}
-          <button type="button"> Agregar al carrito </button>
         </div>
       )}
     </div>
