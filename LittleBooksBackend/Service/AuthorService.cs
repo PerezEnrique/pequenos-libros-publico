@@ -12,9 +12,19 @@ namespace LittleBooksBackend.Service
             this.repository = repository;
         }
 
-        public Author Test()
+        public Author? Get(int id)
         {
-            return repository.RepoTest();
+            var response = repository.GetAuthor(id);
+            if (response.Result.IsSuccess)
+            {
+                return response.Result.Value;
+            }
+            else
+            {
+                Console.WriteLine(response.Result.ErrorMessage);
+                return null;
+            }
+
         }
     }
 }

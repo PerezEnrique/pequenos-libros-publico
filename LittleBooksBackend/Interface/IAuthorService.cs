@@ -4,6 +4,6 @@ namespace LittleBooksBackend.Interface
 {
     public interface IAuthorService
     {
-        Author Test();
+        public Task<Author> Get(int id);
     }
 }

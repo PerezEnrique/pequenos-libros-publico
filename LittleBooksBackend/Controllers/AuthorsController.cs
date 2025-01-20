@@ -14,10 +14,17 @@ public class AuthorsController : ControllerBase
         _authorService = authorService;
     }
 
-    [HttpGet()]
-    public IActionResult TestEndpoint()
+    [HttpGet("Author/{id}")]
+    public async Task<IActionResult> TestEndpoint(int id)
     {
-        var author = _authorService.Test();
-        return Ok("Hello from AuthorsController");
+        try
+        {
+            return Ok(await _authorService.Get(id));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return Problem(statusCode: StatusCodes.Status500InternalServerError);
+        }
     }
 }

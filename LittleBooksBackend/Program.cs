@@ -11,18 +11,6 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<IDbConnection>(sp =>
     new NpgsqlConnection(builder.Configuration["DB_CONECTION"]));
-#region Cors
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("Cors", policy =>
-    {
-        policy.AllowAnyOrigin()
-              .WithMethods("GET") 
-              .AllowAnyHeader();
-    });
-});
-#endregion
-
 #region repository
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 #endregion
@@ -43,8 +31,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseCors("Cors");
-
 app.MapControllers();
 
 app.Run();
+
