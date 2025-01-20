@@ -13,7 +13,7 @@ public class BookService : IBookService
 
     public BookService(IConfiguration config)
     {
-        _connectionString = config.GetConnectionString("Default");
+        _connectionString = config["DB_CONECTION"];
     }
 
     public async Task<IEnumerable<BookDto>> FindByGenre(string genre)
