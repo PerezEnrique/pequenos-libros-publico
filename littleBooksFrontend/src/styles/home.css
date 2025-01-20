@@ -54,7 +54,6 @@ color:var(--luz_1);
 .navbar {
   background-color: var(--fondo_1);
   color: var(--luz_1);
-  padding: 10px 20px; 
   list-style: none;
   text-align: center;
   transition: all 0.3s ease;
@@ -64,16 +63,16 @@ color:var(--luz_1);
   align-items: center; 
   justify-content: space-between; 
   gap: 15px; 
+  margin-top: 15px;
 }
 
 .nav-list {
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin: 20px;
   display: flex; 
   flex-direction: row; 
   justify-content: space-between;
-  gap: 10px; 
   transition: transform 1s ease-in-out;
   list-style-type: none;
 }
@@ -82,9 +81,9 @@ color:var(--luz_1);
   text-decoration: none;
   color: var(--luz_2);
   font-size: 1.2rem;
+  margin-right: 20px;
   background-color: transparent;
   border: none;
-  padding: 10px 20px;
   transition: color 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
 }
@@ -100,6 +99,7 @@ color:var(--luz_1);
   background-color: var(--fondo_1);
   color: var(--luz_2);
   border: 1px solid var(--luz_2);
+  margin-top: 15px;
   padding: 10px;
   font-size: 1rem;
   text-align: center;
