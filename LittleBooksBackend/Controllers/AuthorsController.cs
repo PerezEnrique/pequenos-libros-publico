@@ -15,11 +15,24 @@ public class AuthorsController : ControllerBase
     }
 
     [HttpGet("Author/{id}")]
-    public async Task<IActionResult> TestEndpoint(int id)
+    public async Task<IActionResult> GetById(int id)
     {
         try
         {
             return Ok(await _authorService.Get(id));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return Problem(statusCode: StatusCodes.Status500InternalServerError);
+        }
+    }
+    [HttpGet("Authors")]
+    public async Task<IActionResult> GetAllAuthors()
+    {
+        try
+        {
+            return Ok(await _authorService.GetAll());
         }
         catch (Exception ex)
         {
