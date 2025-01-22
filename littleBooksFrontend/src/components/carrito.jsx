@@ -43,9 +43,9 @@ const Carrito = () => {
             cart.map((item, index) => (
                 <div key={index} className="list-item-cart">
                     <h4>{item.title}</h4>
-                    <button className="btn" type="button" >+</button>
+                    <button className="btn" type="button" >-</button>
                         <h5 className="cantidad"> 1 </h5>
-                    <button className="btn" type="button">-</button>            
+                    <button className="btn" type="button">+</button>            
                 </div>
             ))
           )}
