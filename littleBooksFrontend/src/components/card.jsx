@@ -2,6 +2,20 @@ import React from 'react';
 
 //base de la card, donde se mostraran los distintos libros
 const Card = ({ image, title, author, stock, description }) => {
+
+  const bookItem = { title, author, stock};
+
+  //se agrega el libro a la base de datos
+  const addItem = (item) => {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (!cart.some(existingItem => existingItem.title === item.title)){
+      cart.push(item);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  };
+
+
   return (
     <div className="card">
       <img src={image} alt={title} className="card-image" />
@@ -10,7 +24,7 @@ const Card = ({ image, title, author, stock, description }) => {
         <p className="card-author">Autor: {author}</p>
         <p className="card-stock">Stock: {stock}</p>
         <p className="card-description">{description}</p>
-        <button className="card-button">Agregar</button>
+        <button type='button' onClick={() => addItem(bookItem)} className="card-button">Agregar</button>
       </div>
     </div>
   );

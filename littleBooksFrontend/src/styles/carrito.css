@@ -5,9 +5,8 @@
     --luz_2: rgba(181, 105, 90, 1);
     background-color: var(--fondo_1);
     color:var(--luz_1);
-    }
+}
 
-    
 .container {
     display: flex; 
     justify-content: space-between; 
@@ -15,24 +14,69 @@
     text-align: center;
     font-size: x-large;
     font-weight: bold;
-}
-
-.list {
-    flex: 1; 
     padding: 20px;
+    flex-wrap: wrap; 
+}
+/*estilo de lista dinamica */
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 800px;
 }
 
+.list-item-cart {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    width: 100%; 
+    border-bottom: 1px solid var(--fondo_2); 
+}
+
+.list-item-cart h4 {
+    width: 500px;
+    margin: 0;
+    font-size: 18px;
+    flex-grow: 1; 
+    text-align: left;
+}
+
+.cantidad {
+    font-size: 18px;
+    margin: 0 10px;
+}
+
+.btn {
+    background-color: var(--luz_2);
+    color: var(--luz_1);
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.btn:hover {
+    background-color: var(--luz_1);
+    color: var(--fondo_1);
+}
+
+/* estilos del formulario */
 .form-conteiner {
     flex: 1; 
-    max-width: 600px; 
+    max-width: 500px; 
     background-color: var(--fondo_2);
     color: var(--luz_1);
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
 }
-form{
+
+form {
     width: 100%; 
     display: flex;
     flex-direction: column; 
@@ -41,13 +85,15 @@ form{
     align-items: center; 
     margin-bottom: 30px;     
 }
+
 input {
     padding: 10px;
     font-size: 16px;
     border: 1px solid var(--fondo_1);
     border-radius: 4px;
     background-color: var(--luz_2);
-    width: 70%;
+    width: 80%; 
+    max-width: 400px; 
 }
 
 button {
@@ -61,6 +107,8 @@ button {
     margin: 5px;
     font-size: x-large;
     font-weight: bold;
+    width: 80%; 
+    max-width: 400px; 
 }
 
 button:hover {
@@ -86,12 +134,25 @@ button a:hover {
     margin-top: 15px; 
 }
 
-
-
-
+/* Media query para pantallas más pequeñas */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; 
+        flex-direction: column;
         gap: 20px;
+    }
+
+    .list-item-cart {
+        width: 90%; 
+        margin: 10px 0; 
+    }
+
+    input,
+    button {
+        width: 100%; 
+        max-width: none; 
+    }
+
+    .img-carrito {
+        width: 120px;
     }
 }
