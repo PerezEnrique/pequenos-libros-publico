@@ -16,6 +16,41 @@ public class BookService : IBookService
         _connectionString = config["DB_CONECTION"];
     }
 
+    public async Task<IEnumerable<BookDto>> FindByTitleOrAuthor(string term)
+    {
+        if(string.IsNullOrWhiteSpace(_connectionString))
+            throw new Exception("Connection string is null");
+
+        using var connection = new NpgsqlConnection(_connectionString);
+
+        var sql = @"SELECT 
+                id, 
+                title,
+                year, 
+                description, 
+                imageurl AS ImageUrl,
+                authorid AS id, 
+                author AS name, 
+                genreid AS id, 
+                genre AS name 
+            FROM search_books(@term);";
+
+        IEnumerable<Book> queryResult = await connection.QueryAsync<Book, Author, Genre, Book>(
+            sql, 
+            (book, author, genre) => {
+                book.Authors.Add(author);
+                book.Genres.Add(genre);
+                return book;
+            },
+            new { term },
+            splitOn: "id"
+            );
+
+        IEnumerable<Book> resultWithoutDuplicates = GetResultWithoutDuplicates(queryResult);
+
+        return resultWithoutDuplicates.Select(book => new BookDto(book));
+    }
+
     public async Task<IEnumerable<BookDto>> FindByGenre(string genre)
     {
         if(string.IsNullOrWhiteSpace(_connectionString))
