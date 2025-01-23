@@ -63,6 +63,7 @@ public class BookService : IBookService
                 title,
                 year, 
                 description, 
+                imageurl AS ImageUrl,
                 authorid AS id, 
                 author AS name, 
                 genreid AS id, 
