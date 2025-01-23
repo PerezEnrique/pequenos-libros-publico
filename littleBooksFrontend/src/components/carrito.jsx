@@ -4,7 +4,7 @@ import cartImg from "../assets/cart.png";
 
 import "../styles/carrito.css";
 
-const Carrito = () => {         
+const Carrito = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     apellido: '',
@@ -22,14 +22,49 @@ const Carrito = () => {
     console.log("formulario enviado", formData);
   };
 
-  // Estado del carrito
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    // Obtener el carrito desde localStorage
+    
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart);
-  }, []); 
+    const updatedCart = storedCart.map(item => ({
+        ...item,
+        cantidad: item.cantidad || 1
+      }));
+      
+      setCart(updatedCart);
+    }, []);
+
+  // Función para actualizar la cantidad de un producto específico
+  const updateQuantity = (index, newQuantity) => {
+    const updatedCart = [...cart];
+    updatedCart[index].cantidad = newQuantity;
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));  
+  };
+
+  const handleSubstracBook = (index) => {
+    const product = cart[index];
+    if (product.cantidad > 1) {
+      updateQuantity(index, product.cantidad - 1);
+    } else {
+      const confirmDelete = window.confirm(`¿Seguro que deseas eliminar "${product.title}" del carrito?`);
+      if (confirmDelete) {
+        removeBook(index);
+      }
+    }
+  };
+
+  const handleAddBook = (index) => {
+    const product = cart[index];
+    updateQuantity(index, product.cantidad + 1);
+  };
+
+  const removeBook = (index) => {
+    const updatedCart = cart.filter((item, i) => i !== index);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));  // Actualizar en localStorage
+  };
 
   return (
     <div className="container">
@@ -41,12 +76,12 @@ const Carrito = () => {
             <p>No hay productos en el carrito.</p>
           ) : (
             cart.map((item, index) => (
-                <div key={index} className="list-item-cart">
-                    <h4>{item.title}</h4>
-                    <button className="btn" type="button" >-</button>
-                        <h5 className="cantidad"> 1 </h5>
-                    <button className="btn" type="button">+</button>            
-                </div>
+              <div key={index} className="list-item-cart">
+                <h4>{item.title}</h4>
+                <button className="btn" type="button" onClick={() => handleSubstracBook(index)}>-</button>
+                <h5 className="cantidad">{item.cantidad}</h5>
+                <button className="btn" type="button" onClick={() => handleAddBook(index)}>+</button>
+              </div>
             ))
           )}
         </div>
