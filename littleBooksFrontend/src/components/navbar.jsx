@@ -15,19 +15,28 @@ const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState(""); 
   const { setResults } = useSearch();
 
-  const handleSearch = async (e) => {
-  
-    if (!searchTerm) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/by-genre/${searchTerm}`);
-
+  const handleButtonForm =async (e) => {
+    e.preventDefault();
+    try{
+      const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/${searchTerm}`);
+    
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      const data = await response.json();
+      setResults(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
 
+  };
+
+  const handleSearch = async (e) => {
+    try {
+      const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/by-genre/${searchTerm}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setResults(data);
     } catch (error) {
@@ -97,7 +106,7 @@ const Navbar = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button type="submit">Buscar</button>
+            <button type="submit" onClick={() => handleButtonForm(searchTerm)}>Buscar</button>
           </li>
         </form>
       </ul>
