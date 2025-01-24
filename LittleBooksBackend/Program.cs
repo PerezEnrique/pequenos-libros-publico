@@ -11,9 +11,23 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<IDbConnection>(sp =>
     new NpgsqlConnection(builder.Configuration["DB_CONECTION"]));
+
+#region Cors
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Cors", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .WithMethods("GET", "POST") 
+              .AllowAnyHeader();
+    });
+});
+#endregion
+
 #region repository
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 #endregion
+
 #region service 
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IBookService, BookService>();
@@ -30,6 +44,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("Cors");
 
 app.MapControllers();
 
