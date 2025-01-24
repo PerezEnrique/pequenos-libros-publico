@@ -4,6 +4,7 @@ namespace LittleBooksBackend.Interface
 {
     public interface IAuthorRepository
     {
-        Author RepoTest();
+        public Task<ResultP<IEnumerable<Author>>> GetAllAuthor();
+        public Task<ResultP<Author>> GetAuthor(int id);
     }
 }

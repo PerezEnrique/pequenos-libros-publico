@@ -27,4 +27,18 @@ public class BooksController : ControllerBase
             return Problem(statusCode: StatusCodes.Status500InternalServerError);
         }
     }
+
+    [HttpGet("by-title-or-author/{term}")]
+    public async Task<ActionResult<IEnumerable<BookDto>>> FindByTitleOrAuthor(string term)
+    {
+        try
+        {
+            return Ok(await _bookService.FindByTitleOrAuthor(term));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return Problem(statusCode: StatusCodes.Status500InternalServerError);
+        }
+    }
 }

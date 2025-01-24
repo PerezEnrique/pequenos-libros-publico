@@ -12,9 +12,36 @@ namespace LittleBooksBackend.Service
             this.repository = repository;
         }
 
-        public Author Test()
+        public async Task<Author?> Get(int id)
         {
-            return repository.RepoTest();
+            var response = await repository.GetAuthor(id);
+            if (response.IsSuccess)
+            {
+                return response.Value;
+            }
+            else
+            {
+                Console.WriteLine(response.ErrorMessage);
+                return null;
+            }
+
         }
+
+        public async Task<IEnumerable<Author>?> GetAll()
+        {
+            var response = await repository.GetAllAuthor();
+            if (response.IsSuccess)
+            {
+                return response.Value;
+            }
+            else
+            {
+                Console.WriteLine(response.ErrorMessage);
+                return null;
+            }
+
+        }
+
+
     }
 }
