@@ -17,7 +17,7 @@ const Navbar = () => {
 
  // busqueda por titulo o autor.
  const handleButtonForm = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
   if (!searchTerm.trim()) {
     console.error("Por favor ingresa un término de búsqueda");
