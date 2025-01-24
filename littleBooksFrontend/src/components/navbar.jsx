@@ -15,40 +15,48 @@ const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState(""); 
   const { setResults } = useSearch();
 
-  const handleButtonForm =async (e) => {
-    e.preventDefault();
-    try{
-      const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/${searchTerm}`);
-    
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setResults(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+ // busqueda por titulo o autor.
+ const handleButtonForm = async (e) => {
+  e.preventDefault();
+
+  if (!searchTerm.trim()) {
+    console.error("Por favor ingresa un término de búsqueda");
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/${searchTerm}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    const data = await response.json();
+    setResults(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 
-  };
+// busqueda por genero
+const handleSearchByGenre = async (genre) => {
 
-  const handleSearch = async (e) => {
-    try {
-      const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/by-genre/${searchTerm}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      setResults(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+  setSearchTerm("");  
+
+  try {
+    const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/by-genre/${genre}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  };
+    const data = await response.json();
+    setResults(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 
-  const handleButtonClick = (genre) => {
-    cambiarPaleta(genre);
-    setSearchTerm(genre); 
-    handleSearch({ preventDefault: () => {} }); 
-  };
+const handleButtonClick = (genre) => {
+  cambiarPaleta(genre);
+  handleSearchByGenre(genre); 
+};
 
   return (
     <nav className="navbar">
@@ -98,7 +106,7 @@ const Navbar = () => {
             <button type="button" onClick={() => handleButtonClick("MagicalRealism")}>Realismo Mágico</button>
           </li>
         </div>
-        <form onSubmit={handleSearch}>
+        <form onSubmit={handleButtonForm}>
           <li>
             <input
               type="text"

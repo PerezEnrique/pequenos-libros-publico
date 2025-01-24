@@ -25,7 +25,7 @@ const Carrito = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    
+
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     const updatedCart = storedCart.map(item => ({
         ...item,
@@ -63,7 +63,7 @@ const Carrito = () => {
   const removeBook = (index) => {
     const updatedCart = cart.filter((item, i) => i !== index);
     setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));  // Actualizar en localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));  
   };
 
   return (
