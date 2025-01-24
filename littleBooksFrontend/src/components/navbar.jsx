@@ -25,7 +25,7 @@ const Navbar = () => {
   }
 
   try {
-    const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/${searchTerm}`);
+    const response = await fetch(`https://pequenos-libros-publico.onrender.com/books/by-title-or-author/${searchTerm}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

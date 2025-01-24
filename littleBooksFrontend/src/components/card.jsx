@@ -1,7 +1,7 @@
 import React from 'react';
 
 //base de la card, donde se mostraran los distintos libros
-const Card = ({ image, title, author, stock, description }) => {
+const Card = ({ imageUrl, title, author, stock, description }) => {
 
   const bookItem = { title, author, stock};
 
@@ -18,7 +18,7 @@ const Card = ({ image, title, author, stock, description }) => {
 
   return (
     <div className="card">
-      <img src={image} alt={title} className="card-image" />
+      <img src={imageUrl} alt={title} className="card-image" />
       <div className="card-content">
         <h3 className="card-title">{title}</h3>
         <p className="card-author">Autor: {author}</p>

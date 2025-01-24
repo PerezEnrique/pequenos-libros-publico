@@ -17,10 +17,37 @@ const Carrito = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  //envio de pedidos a la base de datos
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("formulario enviado", formData);
-  };
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    try {
+        const response = await fetch("/endpoint/pedidos", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            formData,
+            cart
+          }),
+        });
+        console.log("datos enviados:", formData, cart);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          
+          window.confirm("Su pedido ha sido realizado con éxito, muchas gracias por su compra");
+          
+          localStorage.removeItem('cart');
+          setCart([]);
+  
+      } catch (error) {
+          console.error("Error fetching data:", error);
+      }
+    };
 
   const [cart, setCart] = useState([]);
 

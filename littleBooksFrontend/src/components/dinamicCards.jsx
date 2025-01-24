@@ -14,7 +14,7 @@ const DinamicCards= () => {
           {results.map((result, index) => (
             <Card
             key={index}
-            image={result.image} 
+            imageUrl={result.imageUrl} 
             title={result.title}
             year={result.year}
             authors={result.authors} 
