@@ -20,11 +20,13 @@ En el carrito de compras podra ver los libros seleccionados para comprar en el c
 Front End:
 
 [![React License](https://img.shields.io/badge/React-Library-green.svg)](https://react.dev/)
+
 [![Vite License](https://img.shields.io/badge/Vite-Bundler-yellow.svg)](https://vite.dev/)
 
 Back End:
 
 [![.Net License](https://img.shields.io/badge/.Net-Framework-blue.svg)](https://dotnet.microsoft.com/es-es/)
+
 [![PostgreSQL License](https://img.shields.io/badge/PostgreSQL-DataBase-red.svg)](https://www.postgresql.org/)
 
 ## Equipo: 👥
@@ -46,5 +48,7 @@ clone git https://github.com/No-Country-simulation/s20-12-webapp
 - BACKEND: Moverse a la carpeta backend
 
 - FRONTEND: Moverse a la carpeta frontend
+  
 npm install
+
 npm run dev
