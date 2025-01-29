@@ -14,7 +14,7 @@
     text-align: center;
     font-size: x-large;
     font-weight: bold;
-    padding: 20px;
+    padding: 10px; 
     flex-wrap: wrap; 
 }
 /*estilo de lista dinamica */
@@ -133,9 +133,10 @@ button a:hover {
 .container h2 {
     margin-top: 15px;
     text-decoration: underline 1px solid;
+    font-size: clamp(1.8rem, calc(7vw + 1), 2rem);
 }
 
-/* Media query para pantallas más pequeñas */
+/* Media query para pantallas más grandes */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -155,5 +156,42 @@ button a:hover {
 
     .img-carrito {
         width: 120px;
+    }
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 480px) {
+    .container {
+        gap: 10px;
+        padding: 10px;
+        align-items: center;
+    }
+
+    .list-item-cart {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .list-item-cart h4 {
+        width: 100%;
+    }
+
+    .cantidad {
+        margin: 5px 0;
+    }
+
+    .btn {
+        margin: 0px;
+        width: 50px;
+        font-size: 14px;
+    }
+
+    input, button {
+        width: 100%; 
+        max-width: none;
+    }
+
+    .img-carrito {
+        width: 100px;
     }
 }
