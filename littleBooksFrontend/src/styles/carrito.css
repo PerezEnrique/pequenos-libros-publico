@@ -143,14 +143,23 @@ button a:hover {
         gap: 20px;
     }
 
+    .header{
+        width: 107%;
+    }
+
     .list-item-cart {
         width: 90%; 
         margin: 10px 0; 
     }
 
+    .form-conteiner {
+        margin: auto;
+        width: 100%;    
+    }
+
     input,
     button {
-        width: 100%; 
+        width: 90%; 
         max-width: none; 
     }
 
@@ -160,11 +169,16 @@ button a:hover {
 }
 
 /* Media query para pantallas más pequeñas */
-@media (max-width: 480px) {
+@media screen and (max-width: 320px) {
     .container {
+        flex-direction: column;
         gap: 10px;
         padding: 10px;
-        align-items: center;
+        
+    }
+
+    .header{
+        width: 260%;
     }
 
     .list-item-cart {
@@ -186,8 +200,13 @@ button a:hover {
         font-size: 14px;
     }
 
+    .form-conteiner {
+        margin: auto;
+        width: 1000%;    
+    }
+
     input, button {
-        width: 100%; 
+        width: 90%; 
         max-width: none;
     }
 
